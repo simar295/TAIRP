@@ -44,6 +44,25 @@ class _homepageState extends State<homepage> {
     }
   }
 
+  String chooseimage() {
+    if (weatherModel?.weather?.elementAt(0).description == "haze") {
+      //new delhi
+      return 'https://i.pinimg.com/564x/e6/38/18/e63818768173df79b5b3075505425202.jpg';
+    }
+    if (weatherModel?.weather?.elementAt(0).description! == "clear sky") {
+      //norway
+      return 'https://i.pinimg.com/564x/05/e0/39/05e039a9a62bb2e1bcacd7a407f2b121.jpg';
+    }
+    if (weatherModel?.weather?.elementAt(0).description! == "overcast clouds") {
+      //goa
+      return 'https://i.pinimg.com/564x/e9/04/c7/e904c7795a3e71b48e8cdc3b0b00d504.jpg';
+    } else if (weatherModel?.main?.temp == null) {
+      return 'https://i.pinimg.com/564x/56/39/d2/5639d230c3dd71e527c7a227907d7b33.jpg';
+    } else {
+      return 'https://i.pinimg.com/564x/56/39/d2/5639d230c3dd71e527c7a227907d7b33.jpg';
+    }
+  }
+
   TextEditingController controller = TextEditingController();
   WeatherModel? weatherModel;
   var isloading = false;
@@ -53,11 +72,9 @@ class _homepageState extends State<homepage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(
-                    'https://i.pinimg.com/564x/56/39/d2/5639d230c3dd71e527c7a227907d7b33.jpg'),
-                fit: BoxFit.cover)),
+                image: NetworkImage(chooseimage()), fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
